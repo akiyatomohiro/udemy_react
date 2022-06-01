@@ -1,6 +1,9 @@
 function App() {
   return (
-    <p>Helloooooo</p>
+    <>
+      <p>Helloooooo</p>
+      <input className="akiya" onClick={ () => { console.log(1122)} } />
+    </>
   );
 }
 
