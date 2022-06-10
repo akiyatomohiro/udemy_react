@@ -1,41 +1,26 @@
-// function App() {
-//   return (
-//     <>
-//       <p>Helloooooo</p>
-//       <input className="akiya" onClick={ () => { console.log(1122)} } />
-//     </>
-//   );
-// }
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const App = () => {
-  const profiles = [
-    { name: "aaaa", age: 33 },
-    { name: "aadddddaa", age: 34 },
-    { name: "allllla" }
-  ]
-  return (
-    <>
-      {
-        profiles.map((p, index) => {
-          return <Cat name={p.name} age={p.age} key={index}/>
-        })
-      }
-      <p>Helloooooo</p>
-      <input className="akiya" onClick={ () => { console.log(1122)} } />
-    </>
-  );
+import { increment, decrement } from '../actions'
+
+class App extends Component {
+  render() {
+    const props = this.props
+    return (
+      <React.Fragment>
+        <div>value: { props.value }</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
-const Cat = (props) => {
-  return (
-    <div>
-      にゃー{props.name}, {props.age}
-    </div>
-  )
-}
+const mapStateToProps = state => ( {value: state.count.value })
+// const mapDispatchToProps = dispatch => ({
+//   increment: () => dispatch(increment()),
+//   decrement: () => dispatch(decrement())
+// })
+const mapDispatchToProps = ({ increment, decrement })
 
-Cat.defaultProps = {
-  age: 20
-}
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App)
