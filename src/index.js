@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
 import './index.css';
 import reducer from './reducers';
@@ -17,10 +17,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
-        <Route path='/events/new' element={<EventsNew />} />
-        <Route path='/' element={<EventsIndex />} />
-      </Routes>
+      <Switch>
+        <Route exact path='/events/new' component={EventsNew} />
+        <Route exact path='/' component={EventsIndex} />
+      </Switch>
     </BrowserRouter>
   </Provider>
 );
